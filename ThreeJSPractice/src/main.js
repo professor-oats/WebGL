@@ -1,5 +1,19 @@
 import * as THREE from 'three';
 import "./style.css"
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js'
+
+/* Note: We shall look more into the three/examples library
+ * further on to see what we can use in other projects
+ */
+
+/* In this project we will use gsap that helps with framerate
+ * independency and render based on delta time.
+ * We will see if it also can lerp
+ */
+
+/* Idea: Add planet materials that we can switch between to render
+ * the planets of our solar system?
+ */
 
 // Scene
 const scene = new THREE.Scene();
@@ -42,9 +56,13 @@ renderer.setSize(sizes.width, sizes.height);
 //renderer.physicallyCorrectLights = true; // For accurate lighting calculations
 //renderer.render(scene, camera);
 
+// Controls
+const controls = new OrbitControls(camera, canvas);
+controls.enableDamping = true;
+
 // Animation Loop
 function animate() {
-  requestAnimationFrame(animate); // Schedule the next frame
+  window.requestAnimationFrame(animate); // Schedule the next frame
   renderer.render(scene, camera); // Render the scene
 }
 
